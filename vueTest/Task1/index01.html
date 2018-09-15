@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js Start</title>
+    <style>
+        #app {
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #2c3e50;
+            margin-top: 60px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+
+    <div class="container">
+        <h2>Bordered Table</h2>
+        <p>The .table-bordered class adds borders to a table:</p>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Flight</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(p, key) in products">
+                <td>{{p.imie}}</td>
+                <td>{{p.nazwisko}}</td>
+                <td>{{p.lot}}</td>
+                <td><button v-on:click="removeFlight(key)">Remove</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Imie</label>
+                    <input v-model="inputName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Nazwisko</label>
+                    <input v-model="inputSurname" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Lot</label>
+                    <input v-model="inputFlight" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <button @click="addFromInput(inputName, inputSurname, inputFlight)" type="button" class="btn btn-primary">Submit</button>
+        </form>
+
+
+    <!-- 5. v-if can be helpful with conditional statements -->
+    <p v-if="!products.length">No products!</p>
+    <!-- 6. v-on adds an handler and :click is the name of the event, then goes the function to invoke -->
+
+    <button v-on:click="removeLast()">Remove last item</button>
+    <button v-on:click="addPutinFlight()">Add Putin</button>
+
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            inputName: '',
+            inputSurname: '',
+            inputFlight: '',
+            //7/ 1. We can define any JavaScript some array of objects
+            products: [{
+                imie: 'Karol',
+                nazwisko: 'Arek',
+                lot: 'WAW-FRA'
+            }, {
+                imie: 'Marta',
+                nazwisko: 'Łata',
+                lot: 'WAW-NRT'
+            }, {
+                imie: 'Lech',
+                nazwisko: 'Wałęsa',
+                lot: 'WAW-GDA'
+            }]
+        },
+        // 3. To get some events from user we can define a method in 'methods'
+        methods: {
+            //3/ 4. The important thing is to use function with execution-based context
+            removeLast() {
+                this.products.pop();
+            },
+            addPutinFlight(){
+                this.products.push
+                (
+                    {
+                        imie: "Władimir",
+                        nazwisko: "Putin",
+                        lot: "WAW-SVO"
+                    }
+                );
+            },
+            removeFlight(key){
+                this.products.splice(key ,1);
+            },
+            addFromInput(inputName, inputSurname, inputFlight){
+              this.products.push
+              (
+                {
+                  imie: inputName,
+                  nazwisko: inputSurname,
+                  lot: inputFlight
+                }
+              )
+            }
+        }
+    });
+</script>
+</body>
+
+</html>
