@@ -12,9 +12,6 @@
             <label for="exampleInputPassword1">Lot</label>
             <input v-model="newFlight.lot" class="form-control" id="exampleInputPassword2" name="flight">
         </div>
-        <!--<button @click="addFromInput(inputName, inputSurname, inputFlight)" type="button"-->
-                <!--class="btn btn-primary">Submit-->
-        <!--</button>-->
         <button>Add</button>
 
         <div v-show="errors.has('imie')">
