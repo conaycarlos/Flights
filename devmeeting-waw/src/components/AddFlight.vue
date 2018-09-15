@@ -17,7 +17,6 @@
         <!--</button>-->
         <button>Add</button>
 
-
         <div v-show="errors.has('imie')">
             {{ errors.first('imie') }}
         </div>
@@ -41,21 +40,6 @@ export default {
     };
   },
   methods: {
-    // addFromInput(inputName, inputSurname, inputFlight) {
-    //   this.$validator.validateAll().then((result) => {
-    //     if (!result) {
-    //       return;
-    //     }
-    //     this.flights.push({
-    //       imie: inputName,
-    //       nazwisko: inputSurname,
-    //       lot: inputFlight,
-    //     });
-    //     this.newFlight.imie = '';
-    //     // 4/ and reset validation state after adding a product
-    //     this.$validator.reset();
-    //   });
-    // },
     onSubmit() {
       this.$validator.validateAll()
         .then((result) => {
